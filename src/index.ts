@@ -1,7 +1,5 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
-
 import { CacheType, Client, GatewayIntentBits, Interaction } from 'discord.js'
+import { DISCORD_TOKEN } from './config'
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 
@@ -16,9 +14,4 @@ client.on('interactionCreate', async (interaction: Interaction<CacheType>) => {
     }
 })
 
-const { DISCORD_TOKEN } = process.env
-if (!DISCORD_TOKEN || !DISCORD_TOKEN.trim()) {
-    throw new Error(`Cannot get property ${DISCORD_TOKEN}`)
-}
-
-client.login(DISCORD_TOKEN)
+client.login(DISCORD_TOKEN())
