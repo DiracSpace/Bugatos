@@ -1,0 +1,1 @@
+export { extractCommandDetails } from './string'
