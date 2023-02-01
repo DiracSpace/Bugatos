@@ -1,0 +1,6 @@
+export type EnvironmentNames =
+    | 'DISCORD_TOKEN'
+    | 'DISCORD_CLIENT_SECRET'
+    | 'DISCORD_CLIENT_ID'
+    | 'DISCORD_APPLICATION_ID'
+    | 'DISCORD_PUBLIC_KEY'

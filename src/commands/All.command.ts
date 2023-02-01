@@ -2,6 +2,8 @@
 // import Command from '../model/Command'
 // import config from '../../config.json'
 
+import { ICommand } from '@/model'
+
 // const commands: Command = {
 //     name: 'Commands',
 //     description: 'Displays all available commands',
@@ -19,3 +21,13 @@
 // }
 
 // export default commands
+
+// export const ALL: ICommand = {
+//     name: 'Commands',
+//     description: 'Displays all available commands',
+//     hidden: false,
+//     disabled: false,
+//     action: (_, message) => {
+//         let textToSend = `Use each command with the prefix \`${config.commandPrefix}\`\n`
+//     }
+// }

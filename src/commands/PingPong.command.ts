@@ -1,6 +1,6 @@
-import Command from '../model/Command'
+import { ICommand } from '@/model'
 
-const pingPong: Command = {
+export const PING_PONG: ICommand = {
     name: 'Ping Pong',
     description: 'Prints "pong"',
     hidden: false,
@@ -9,5 +9,3 @@ const pingPong: Command = {
         message.channel.send('pong')
     }
 }
-
-export default pingPong
