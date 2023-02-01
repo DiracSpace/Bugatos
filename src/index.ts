@@ -1,48 +1,53 @@
-import { CacheType, Client, Interaction, Message } from 'discord.js'
-import { BOT_INTENTS, BOT_PARTIALS, DISCORD_TOKEN, PREFIX } from './config'
+import { BOT_INTENTS, BOT_PARTIALS, DISCORD_TOKEN, PREFIX } from '@/config'
+import { extractCommandDetails } from '@/utils'
+import { Client, Message } from 'discord.js'
+import { Logger, LogLevel } from '@/logger'
+import { PING_PONG, ALL } from '@/commands'
+import { JOIN_VOICE_CHANNEL } from './commands/Join.command'
+import { SACALO } from './commands/Sacalo.command'
 
 const client = new Client({ intents: BOT_INTENTS, partials: BOT_PARTIALS })
-
-client.on('ready', () => {
-    console.info(`Logged in as ${client.user.tag}`)
+const logger = new Logger({
+    level: LogLevel.Debug,
+    source: 'index.ts'
 })
 
-client.on('interactionCreate', async (interaction: Interaction<CacheType>) => {
-    if (!interaction.isChatInputCommand()) return
-    if (interaction.commandName === 'ping') {
-        await interaction.reply('Pong!')
-    }
+client.on('ready', () => {
+    logger.log('client.user.tag:', client.user.tag)
 })
 
 client.on('messageCreate', (message: Message<boolean>) => {
-    console.log('message!')
-    console.log('message.content:', message.content)
-
     if (message.author.bot) {
-        console.log("author's a bot.")
+        logger.warn('Author is a bot')
         return
     }
 
     if (!message.content.startsWith(PREFIX)) {
-        console.log("message content isn't a command.")
+        logger.log("Message isn't a command")
         return
     }
 
-    console.log('processing command')
+    logger.log('Processing command')
 
-    const commandBody = message.content.slice(PREFIX.length)
-    const args = commandBody.split(' ')
-    const command = args.shift().toLowerCase()
-
-    console.log('commandBody:', commandBody)
-    console.log('args:', args)
-    console.log('command:', command)
+    const { command, commandArguments } = extractCommandDetails(message.content);
+    logger.log("command:", command);
+    logger.log("commandArguments:", commandArguments);
 
     if (command === 'ping') {
-        console.log('Inside ping')
-        message.reply(
-            `Pong! This message was sent by ${message.author.username}.`
-        )
+        logger.log('Ping command')
+        PING_PONG.action({ message })
+    }
+
+    if (command === 'all') {
+        ALL.action({ message })
+    }
+
+    if (command === 'join') {
+        JOIN_VOICE_CHANNEL.action({ message })
+    }
+
+    if (command === 'sacalo') {
+        SACALO.action({ message })
     }
 })
 

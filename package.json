@@ -4,15 +4,16 @@
     "description": "Discord bot for playing music from audio chats",
     "main": "./dist/src/index.js",
     "scripts": {
-        "dev": "tsnd --respawn ./src/index.ts",
-        "build": "rimraf dist && tsc -p tsconfig-build.json",
+        "dev": "tsc-alias && tsnd --respawn ./src/index.ts",
+        "build": "rimraf dist && tsc -p tsconfig-build.json && tsc-alias",
         "prod": "tsc && node ./dist/src/index.js",
         "format:check": "prettier --check .",
         "format:fix": "prettier --write .",
         "lint": "eslint --fix --ext .ts,.html,.scss,.css .",
         "check-upgrades": "npx npm-check-updates --peer --format group --color",
         "apply-upgrades": "npx npm-check-updates -u",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "up": "npm run build && docker build -t bugatos . && docker run -d bugatos"
     },
     "author": "Roberto De León",
     "license": "ISC",
@@ -23,11 +24,16 @@
     },
     "devDependencies": {
         "@types/node": "^18.11.18",
+        "husky": "^8.0.0",
         "prettier": "2.8.3",
         "ts-node": "^10.9.1",
         "ts-node-dev": "^2.0.0",
+        "tsc-alias": "^1.8.2",
+        "tsconfig-paths": "^4.1.2",
         "tslint": "^5.20.1",
-        "typescript": "^4.9.5",
-        "husky": "^8.0.0"
+        "typescript": "^4.9.5"
+    },
+    "_moduleAliases": {
+        "@": "dist"
     }
 }
