@@ -6,3 +6,4 @@ export {
     DISCORD_APPLICATION_ID,
     DISCORD_PUBLIC_KEY
 } from './GetConfigVariables'
+export { BOT_INTENTS } from './BotIntents'
