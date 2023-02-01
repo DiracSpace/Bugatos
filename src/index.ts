@@ -1,7 +1,7 @@
-import { CacheType, Client, GatewayIntentBits, Interaction } from 'discord.js'
-import { DISCORD_TOKEN } from './config'
+import { CacheType, Client, Interaction } from 'discord.js'
+import { BOT_INTENTS, DISCORD_TOKEN } from './config'
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] })
+const client = new Client({ intents: BOT_INTENTS })
 
 client.on('ready', () => {
     console.info(`Logged in as ${client.user.tag}`)
