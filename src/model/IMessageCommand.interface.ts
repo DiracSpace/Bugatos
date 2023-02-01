@@ -1,4 +1,4 @@
 export interface IMessageCommand {
-    command: string;
+    command: string
     commandArguments: string[]
 }

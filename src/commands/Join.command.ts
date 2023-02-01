@@ -13,7 +13,7 @@ export const JOIN_VOICE_CHANNEL: ICommand<IConfig> = {
     hidden: false,
     disabled: false,
     action: ({ message }) => {
-        logger.log("Trying to join channel");
+        logger.log('Trying to join channel')
 
         try {
             joinVoiceChannel({
@@ -22,7 +22,7 @@ export const JOIN_VOICE_CHANNEL: ICommand<IConfig> = {
                 adapterCreator: message.guild.voiceAdapterCreator
             })
         } catch (error) {
-            logger.log("Could not join voice channel");
+            logger.log('Could not join voice channel')
         }
     }
 }

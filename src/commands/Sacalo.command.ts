@@ -1,5 +1,4 @@
-import { ICommand, IConfig } from "@/model";
-
+import { ICommand, IConfig } from '@/model'
 
 export const SACALO: ICommand<IConfig> = {
     name: 'Sacalo',
@@ -7,6 +6,8 @@ export const SACALO: ICommand<IConfig> = {
     hidden: false,
     disabled: false,
     action: ({ message }) => {
-        message.channel.send(`${message.author.username}, has pedido comértelo entero :eggplant: :hot_face:`)
+        message.channel.send(
+            `${message.author.username}, has pedido comértelo entero :eggplant: :hot_face:`
+        )
     }
 }

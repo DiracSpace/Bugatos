@@ -29,9 +29,9 @@ client.on('messageCreate', (message: Message<boolean>) => {
 
     logger.log('Processing command')
 
-    const { command, commandArguments } = extractCommandDetails(message.content);
-    logger.log("command:", command);
-    logger.log("commandArguments:", commandArguments);
+    const { command, commandArguments } = extractCommandDetails(message.content)
+    logger.log('command:', command)
+    logger.log('commandArguments:', commandArguments)
 
     if (command === 'ping') {
         logger.log('Ping command')

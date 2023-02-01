@@ -1,7 +1,9 @@
-import { PREFIX } from "@/config";
-import { IMessageCommand } from "@/model";
+import { PREFIX } from '@/config'
+import { IMessageCommand } from '@/model'
 
-export function extractCommandDetails(content: string): IMessageCommand | undefined {
+export function extractCommandDetails(
+    content: string
+): IMessageCommand | undefined {
     if (!content || !content.trim()) {
         return undefined
     }
