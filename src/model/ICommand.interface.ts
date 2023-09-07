@@ -1,9 +1,9 @@
-import { IConfig } from './IConfig.interface'
+import { Message } from 'discord.js'
 
-export interface ICommand<TConfig extends IConfig> {
+export interface ICommand {
     name: string
     description: string
     hidden: boolean
     disabled: boolean
-    action: (config?: TConfig) => void
+    action: (config: Message<boolean>) => void
 }

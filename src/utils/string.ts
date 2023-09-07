@@ -10,10 +10,10 @@ export function extractCommandDetails(
 
     const commandBody = content.slice(PREFIX.length)
     const args = commandBody.split(' ')
-    const command = args.shift().toLowerCase()
+    const command = args?.shift()?.toLowerCase()
 
     return {
-        command: command,
+        command: command ?? '',
         commandArguments: args
     }
 }

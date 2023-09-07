@@ -16,6 +16,6 @@ RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
 
 COPY . .
 
-RUN pnpm build
+RUN pnpm compile
 
-CMD ["pm2-runtime", "start", "dist/index.js"]
+CMD ["pm2-runtime", "start", "dist/main.js"]
