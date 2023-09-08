@@ -11,7 +11,7 @@ export const JOIN_VOICE_CHANNEL: ICommand = {
     hidden: false,
     disabled: false,
     action: (message: Message<boolean>) => {
-        logger.info("message:", message);
+        logger.info(`message: ${message}`);
         
         if (!message.guildId) {
             logger.error('Could not obtain guild ID')
@@ -37,8 +37,8 @@ export const JOIN_VOICE_CHANNEL: ICommand = {
                 adapterCreator: voiceChannel.guild.voiceAdapterCreator,
                 selfDeaf: false,
             })
-        } catch (error) {
-            logger.error("error:", error);
+        } catch (error: unknown) {
+            logger.error(`error: ${error}`);
         }
     }
 }

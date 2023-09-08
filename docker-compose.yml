@@ -1,0 +1,15 @@
+version: "3.9"
+
+networks:
+  bugatos-network:
+    name: bugatos-network
+
+services:
+  bugatos-bot:
+    container_name: "Bugatos"
+    env_file:
+      - .env
+    restart: always
+    build:
+     context: .
+     dockerfile: Dockerfile

@@ -6,12 +6,13 @@ import { SACALO } from './commands/Sacalo.command'
 import { extractCommandDetails } from './utils'
 import { TomasLogger } from '@tomasjs/logging'
 import { PING_PONG, ALL } from './commands'
-import { env } from './env'
+import 'dotenv/config'
 
+const logger = new TomasLogger('main', 'debug')
 async function main() {
-    const logger = new TomasLogger('main', 'debug')
+    logger.info('Preparing client')
     const client = new Client({ intents: BOT_INTENTS, partials: BOT_PARTIALS })
-    client.login(env.DISCORD_TOKEN)
+    client.login(process.env.DISCORD_TOKEN)
 
     client.on(Events.ClientReady, () => {
         if (!client.user) {
@@ -19,7 +20,8 @@ async function main() {
             return;
         }
     
-        logger.info('client.user.tag:', client.user.tag)
+        logger.info('Client ready!')
+        logger.info(`client.user.tag: ${client.user.tag}`)
     })
     
     client.on(Events.MessageCreate, (message: Message<boolean>) => {
@@ -41,8 +43,8 @@ async function main() {
             return;
         }
     
-        logger.info('command:', command)
-        logger.info('commandArguments:', command.commandArguments)
+        logger.info(`command: ${command}`)
+        logger.info(`command.commandArguments: ${command.commandArguments}`)
     
         if (command.command === 'ping') {
             logger.info('Ping command')
