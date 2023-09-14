@@ -7,6 +7,7 @@ import { extractCommandDetails } from './utils'
 import { TomasLogger } from '@tomasjs/logging'
 import { PING_PONG, ALL } from './commands'
 import 'dotenv/config'
+import { CHATGPT } from './commands/ChatGpt.command'
 
 const logger = new TomasLogger('main', 'debug')
 async function main() {
@@ -61,6 +62,10 @@ async function main() {
     
         if (command.command === 'sacalo') {
             SACALO.action(message)
+        }
+
+        if (command.command === 'ask') {
+            CHATGPT.action(message)
         }
     })
 }

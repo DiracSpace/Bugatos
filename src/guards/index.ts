@@ -1,0 +1,1 @@
+export { isNotFoundError } from './error.guard'
